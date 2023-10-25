@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_25_085325) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "author_id"
+    t.bigint "author_id"
     t.string "title"
     t.text "text"
     t.datetime "created_at"
