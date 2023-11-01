@@ -29,7 +29,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Catalog <a name="about-project"></a>
+# 📖 CodingThought <a name="about-project"></a>
 
 **Coding Thought** a blog website. User will have the feature to create post, comment, edit and plan for future post. Data model is being built based on the [ERD](./erd_diagram.png).
 
