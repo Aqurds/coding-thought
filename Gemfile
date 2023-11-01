@@ -43,6 +43,8 @@ gem 'bootsnap', require: false
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+gem 'rails-controller-testing'
+
 # gem 'rspec-rails', '~> 4.0.0.beta2'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
