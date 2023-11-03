@@ -1,1 +1,18 @@
-<h1>Single Post will be shows here</h1>
+<div>
+  <div>
+   <div>
+     <%= link_to "Post ##{1} by #{@post.author.name}", user_post_path(@post.author, @post) %>
+     <span>Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %></span>
+   </div>
+   <div><%= @post.text %></div>
+</div>
+
+<% if @post.comments == [] %> 
+  <p>This post has no comments yet!</p>
+<% else %>
+    <% @post.comments.each do |comment| %>
+      <ul>
+        <li><%= @post.author.name %>: <%= comment.text %></li>
+      </ul>
+    <% end %>
+<% end %>

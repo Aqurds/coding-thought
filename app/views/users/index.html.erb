@@ -1,1 +1,19 @@
-<h1>All Users data will be shown here</h1>
+<div>
+  <% if @users.empty? %> 
+    <div>There are no users.</div>
+  <% else %>
+    <div>
+      <% @users.each do |user| %>
+          <div>
+            <%= image_tag user.photo, alt: "User pic" %>
+            <%= link_to user_url(user), do %>
+            <div>
+              <h1><%= user.name %></h1>
+              <p>Total posts: <%= user.posts_counter %></p>
+            </div>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

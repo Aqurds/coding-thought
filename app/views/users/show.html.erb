@@ -1,1 +1,30 @@
-<h1>Single User data will be shown here</h1>
+<div>
+  <div>
+    <%= image_tag @user.photo alt: "User's pic here" %>
+    <div>
+      <h1><%= @user.name %></h1>
+      <p>Total posts: <%= @user.posts_counter %></p>
+    </div>
+  </div>
+  <div>
+    <span>Bio</span>
+    <p><%= @user.bio %></p>
+  </div>
+
+  <% if @user.three_most_recent_posts.empty? %>
+    <div>This user has not post.</div>
+  <% else %>
+    <div>
+      <% @user.three_most_recent_posts.each_with_index do |post, index| %>
+        <div>
+          <div><%= link_to "Post  ##{index + 1}", user_post_path(post.author, post) %></div>
+          <div><%= post.text %></div>
+          <div>Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% if @user.three_most_recent_posts.empty? == false %>
+    <button><%= link_to "See all posts", user_posts_path(@user) %></button>
+  <% end %>
+</div>    
