@@ -1,18 +1,23 @@
-<div>
+<div class="container mt-5">
   <div>
-   <div>
-     <%= link_to "Post ##{1} by #{@post.author.name}", user_post_path(@post.author, @post) %>
-     <span>Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %></span>
-   </div>
-   <div><%= @post.text %></div>
-</div>
-
-<% if @post.comments == [] %> 
+   	<div class="mb-5">
+    	<%= link_to "Post ##{1} by #{@post.author.name}", user_post_path(@post.author, @post) %>
+    	<span class="float-end">
+      	Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %>
+    	</span>
+   	</div>
+	</div>
+  <div class="mb-5">
+    <%= @post.text %>
+  </div>
+	
+	<% if @post.comments == [] %> 
   <p>This post has no comments yet!</p>
-<% else %>
-    <% @post.comments.each do |comment| %>
-      <ul>
-        <li><%= @post.author.name %>: <%= comment.text %></li>
-      </ul>
-    <% end %>
-<% end %>
+	<% else %>
+	<ul class="list-group">
+		<% @post.comments.each do |comment| %>
+		<li class="list-group-item"><%= @post.author.name %>: <%= comment.text %></li>
+		<% end %>
+	</ul>
+	<% end %>
+</div>

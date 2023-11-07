@@ -1,36 +1,32 @@
-<div>
-  <div>
-        <%= image_tag @posts[0].author.photo, alt: "User pic" %>
-         <div>
-           <h1><%= @posts[0].author.name %></h1>
-           <p>Number of posts: <%= @posts[0].author.posts_counter %></p>
-         </div>
-  </div>
+<div class="container">
+
 
 
 <% if @posts.empty? %> 
   <div>This user has not published any post yet!</div>
 <% else %>
+
 <% @posts.each_with_index do |post, index| %>
 
-  <div>
+  <div class="overflow-hidden mt-5">
     <div><%= link_to "Post  ##{index + 1}", user_post_path(post.author, post) %></div>
     <br>
     <div><%= post.text %></div>
-    <div>Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></div>
+    <div class="float-end">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></div>
   </div>
 
 
-   <% if post.five_most_recent_comments == [] %> 
+  <div class="mt-3">
+   <% if post.recent_5_comments == [] %> 
      <p>This post has no comments yet!</p>
    <% else %>
-     <% post.five_most_recent_comments.each do |comment| %>
-       <ul>
-         <li><%= post.author.name %>: <%= comment.text %></li>
-       </ul>
-     <% end %>
+    <ul class="list-group">
+      <% post.recent_5_comments.each do |comment| %>
+         <li class="list-group-item"><%= post.author.name %>: <%= comment.text %></li>
+         <% end %>
+      </ul>
    <% end %>
+  </div>
 <% end %>
 <% end %>
 
-<button ><%= link_to "Pagination", user_post_url(@posts[0].author, @posts[0]) %></button>
