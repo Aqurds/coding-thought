@@ -3,8 +3,24 @@
 
 
 <% if @posts.empty? %> 
-  <div>This user has not published any post yet!</div>
+  <div class="mt-5">This user has not published any post yet!</div>
 <% else %>
+
+<div>
+      <% @users.each do |user| %>
+        <div class="d-flex justify-content-between mb-5 mt-5">
+          <div class="d-flex col-3">
+            <img src="<%= user.photo %>" style="width:180px;height:200px;"/>
+            </div>
+            <div class="d-flex col-9 justify-content-around align-items-center">
+            <h1>
+              <a href='<%= link_to=user_url(user) %>'> <%= user.name %> </a>
+            </h1>
+            <p class="mt-5">Number of posts: <%= user.posts_counter %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
 <% @posts.each_with_index do |post, index| %>
 
