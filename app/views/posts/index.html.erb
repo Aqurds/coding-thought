@@ -1,1 +1,48 @@
-<h1>All Posts will be shows here</h1>
+<div class="container">
+
+
+
+<% if @posts.empty? %> 
+  <div class="mt-5">This user has not published any post yet!</div>
+<% else %>
+
+<div>
+      <% @users.each do |user| %>
+        <div class="d-flex justify-content-between mb-5 mt-5">
+          <div class="d-flex col-3">
+            <img src="<%= user.photo %>" style="width:180px;height:200px;"/>
+            </div>
+            <div class="d-flex col-9 justify-content-around align-items-center">
+            <h1>
+              <a href='<%= link_to=user_url(user) %>'> <%= user.name %> </a>
+            </h1>
+            <p class="mt-5">Number of posts: <%= user.posts_counter %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+<% @posts.each_with_index do |post, index| %>
+
+  <div class="overflow-hidden mt-5">
+    <div><%= link_to "Post  ##{index + 1}", user_post_path(post.author, post) %></div>
+    <br>
+    <div><%= post.text %></div>
+    <div class="float-end">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></div>
+  </div>
+
+
+  <div class="mt-3">
+   <% if post.recent_5_comments == [] %> 
+     <p>This post has no comments yet!</p>
+   <% else %>
+    <ul class="list-group">
+      <% post.recent_5_comments.each do |comment| %>
+         <li class="list-group-item"><%= post.author.name %>: <%= comment.text %></li>
+         <% end %>
+      </ul>
+   <% end %>
+  </div>
+<% end %>
+<% end %>
+

@@ -1,1 +1,39 @@
-<h1>Single User data will be shown here</h1>
+<div class="container">
+  
+  <div class="d-flex justify-content-between mb-5 mt-5">
+  <div class="d-flex col-3">
+    <img src="<%= @user.photo %>" style="width:180px;height:200px;"/>
+    </div>
+    <div class="d-flex col-9 justify-content-around align-items-center">
+    <h1>
+      <a href='<%= link_to=user_url(@user) %>'> <%= @user.name %> </a>
+    </h1>
+    <p>Number of posts: <%= @user.posts_counter %></p>
+  </div>
+  </div>
+
+  <div>
+    <span>Bio</span>
+    <p><%= @user.bio %></p>
+  </div>
+
+  <% if @user.class.recent_3_posts(@user).empty? %>
+    <div>This user has not post.</div>
+  <% else %>
+    <div class="mt-5">
+      <% @user.class.recent_3_posts(@user).each_with_index do |post, index| %>
+        <div class="mb-4 overflow-hidden">
+          <div>
+            <%= link_to "Post  ##{index + 1}", user_post_path(post.author, post) %>
+          </div>
+          <div class="mt-2 mb-2">
+            <%= post.text %>
+          </div>
+          <div class="float-end">
+            Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>    
