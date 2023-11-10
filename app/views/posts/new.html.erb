@@ -1,0 +1,10 @@
+# The code generates an HTML form using form_for for creating a new post associated with the :post model.
+# The form is configured to be submitted to the user_posts_path with the @user parameter.
+# It includes text input fields for the post title and a text area for post details.
+# A submit button is provided to submit the form, and the entire structure is written in ERB syntax for a Ruby on Rails view.
+
+<%= form_for :post, url: user_posts_path(@user) do |f| %>
+  Post Title: <%= f.text_field :title %><br />
+  Post Details: <%= f.text_area :text %><br />
+  <%= f.submit %>
+<% end %>

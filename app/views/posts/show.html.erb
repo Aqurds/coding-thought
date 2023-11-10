@@ -3,7 +3,7 @@
    	<div class="mb-5">
     	<%= link_to "Post ##{1} by #{@post.author.name}", user_post_path(@post.author, @post) %>
     	<span class="float-end">
-      	Comments: <%= @post.comments_counter %>, Likes: <%= @post.likes_counter %>
+				Comments: <%= @post.comments_counter %>, <%= button_to "likes: #{@post.likes.count}", user_post_likes_path(@post.author, @post) %>
     	</span>
    	</div>
 	</div>
