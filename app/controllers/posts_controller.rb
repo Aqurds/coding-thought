@@ -32,13 +32,12 @@ class PostsController < ApplicationController
     # If the post is successfully saved, it redirects to the show page for the newly created post with a success notice.
     # If the save fails, it renders the new template again, showing validation errors.
 
-    set_current_user
-    @post = @current_user.posts.build(post_params)
+    @post = current_user.posts.build(post_params)
     @post.comments_counter = 0
     @post.likes_counter = 0
 
     if @post.save
-      redirect_to user_post_path(@current_user.id, @post.id), notice: 'Post was successfully Created'
+      redirect_to user_post_path(current_user.id, @post.id), notice: 'Post was successfully Created'
     else
       render :new
     end
