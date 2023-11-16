@@ -3,8 +3,8 @@ class PostsController < ApplicationController
     # This action retrieves all posts belonging to a specific user (specified by params[:user_id])
     # and assigns them to the @posts instance variable.
     # It's commonly used for displaying a list of posts for a particular user on the index page.
-    @posts = Post.where(author_id: params[:user_id])
-    @users = User.where(id: params[:user_id])
+    @posts = Post.includes(:comments).where(author_id: params[:user_id])
+    @users = User.includes(:comments).where(id: params[:user_id])
   end
 
   def show
