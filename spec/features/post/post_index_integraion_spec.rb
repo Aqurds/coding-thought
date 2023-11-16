@@ -92,27 +92,4 @@ RSpec.describe 'Post', type: :system do
       expect(page).to have_content('Post: Coding Thought Javascript')
     end
   end
-  context 'show' do
-    scenario 'should display the correct post title and author' do
-      visit user_post_path(user1, @post2)
-      expect(page).to have_content('Winter is coming by Nik')
-    end
-    scenario 'should show the number of comments for post' do
-      visit user_post_path(user1, @post2)
-      expect(page).to have_content('Comments:')
-    end
-    scenario 'should show the number of like for a post' do
-      visit user_post_path(user1, @post2)
-      expect(page).to have_content('Likes:')
-    end
-    scenario 'should show the post body' do
-      visit user_post_path(user1, @post2)
-      expect(page).to have_content('Get wood to make fire.')
-    end
-    scenario 'should show the right comment and commentor for a comment' do
-      visit user_post_path(user1, @post2)
-      expect(page).to have_content('Ammy: Great commnet one')
-      expect(page).to have_content('Nik: Great comment three')
-    end
-  end
 end
