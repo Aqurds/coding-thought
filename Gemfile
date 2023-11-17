@@ -77,4 +77,4 @@ end
 #   gem 'rspec-rails'
 # end
 
-gem "devise", "~> 4.9"
+gem 'devise', '~> 4.9'
